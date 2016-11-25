@@ -1,19 +1,23 @@
-var extractTextPlugin = require("extract-text-webpack-plugin");
-
 module.exports = {
-    entry: "./app.ts",
+    entry: {
+        bundle: './src/ts/app.ts',
+    },
     output: {
-        path: __dirname + "/public",
-        filename: "bundle.js"
+        filename: 'bundle.js',
+        path: './public'
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loader: 'tslint-loader'
+            }
+        ],
         loaders: [
             {
-                test: /\.tsx?$/, loader: 'ts-loader'
-            },
-            { 
-                test: /\.scss$/, 
-                loader: ["style", "css", "sass"]
+                test: /\.ts$/,
+                loader: 'ts-loader'
             }
         ]
     }

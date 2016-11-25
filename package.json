@@ -2,24 +2,24 @@
   "name": "angular2ts",
   "version": "1.0.0",
   "description": "Angular 2 weather project on typescript",
-  "main": "app.js",
+  "main": "src/ts/app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/vasiliraby/angular2ts.git"
   },
   "scripts": {
-    "build": "webpack --progress --colors"
+    "build": "webpack --progress --colors",
+    "tslint": "tslint -c tslint.json 'src/ts/app.ts'"
   },
   "author": "Vasili Raby",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.26.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "node-sass": "^3.13.0",
-    "sass-loader": "^4.0.2",
+    "normalize-css": "^2.3.1",
     "style-loader": "^0.13.1",
     "ts-loader": "^1.2.2",
-    "typescript": "^2.0.10",
-    "webpack": "^1.13.3"
+    "tslint": "^4.0.2",
+    "tslint-loader": "^3.2.0",
+    "typescript": "^2.0.10"
   }
 }
