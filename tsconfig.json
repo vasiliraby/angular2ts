@@ -8,6 +8,8 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "types": ["node", "es6-promise", "whatwg-fetch"],
+    "typeRoots": ["node_modules/@types"]
   }
 }
