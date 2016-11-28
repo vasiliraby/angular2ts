@@ -11,6 +11,12 @@ locationService.getLocation().then((pos: Position) => {
     let lat: number = pos.coords.latitude;
 
     getWeatherData(lat, lng);
+},
+(reason) => {
+    let weatherContainer = document.getElementById('weather');
+
+    weatherContainer.classList.add('error');
+    weatherContainer.textContent = `Error: ${reason.message}.`;
 });
 
 // Getting weather for current location and 50 cities nearby
@@ -60,5 +66,17 @@ function getWeatherData(lat: number, lng: number): void {
         });
 
         weatherContainer.appendChild(weatherFragment);
+    })
+    .then(() => {
+        initMap(lat, lng);
+    })
+};
+
+// Creating a map
+function initMap(latitude: number, longitude: number) {
+    let map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: latitude, lng: longitude},
+        scrollwheel: false,
+        zoom: 10
     });
 };

@@ -8,13 +8,29 @@ html {
     font-size: 16px;
 }
 
+.error {
+    color: #f22;
+}
+
 header h1 {
     text-align: center;
+}
+
+#map {
+    width: 60vw;
+    height: 60vh;
+    margin: 2rem auto;
 }
 
 #weather {
     display: flex;
     flex-wrap: wrap;
+}
+
+#weather.error {
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .weather-item {
