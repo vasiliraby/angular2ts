@@ -6,6 +6,9 @@ module.exports = {
         filename: 'bundle.js',
         path: './public'
     },
+    resolve: {
+        extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
+    },
     module: {
         preLoaders: [
             {

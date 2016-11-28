@@ -9,7 +9,7 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "types": ["node", "es6-promise", "whatwg-fetch"],
+    "types": ["core-js", "whatwg-fetch"],
     "typeRoots": ["node_modules/@types"]
   }
 }
