@@ -1,5 +1,7 @@
-import LocationService from './LocationService';
-import HttpService from './HttpService';
+import LocationService from './location.service';
+import HttpService from './http.service';
+
+const WEATHER_API_KEY: string = '103b41f82bea70d2198ab91ea029dcde';
 
 // Getting current location coordinates
 let locationService: LocationService = new LocationService();
@@ -18,22 +20,9 @@ locationService.getLocation().then((pos: Position) => {
 let httpService: HttpService = new HttpService();
 
 function getWeatherData(lat: number, lng: number): void {
-    let urlCurrentLocation = 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lng + '&lang=ru&APPID=103b41f82bea70d2198ab91ea029dcde';
-    let urlNearbyCities = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=50&lang=ru&APPID=103b41f82bea70d2198ab91ea029dcde';
+    let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=50&APPID=' + WEATHER_API_KEY;
 
-    httpService.makeRequest(urlCurrentLocation).then(
-        (response) => {
-            return response.json()
-        })
-        .then((data) => {
-            console.log(data);
-        });
-
-    httpService.makeRequest(urlNearbyCities).then(
-        (response) => {
-            return response.json()
-        })
-        .then((data) => {
-            console.log(data);
-        });
+    httpService.makeRequest(url).then((data) => {
+        console.log(data);
+    });
 };
