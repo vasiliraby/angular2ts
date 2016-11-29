@@ -2,7 +2,7 @@
   "name": "angular2ts",
   "version": "1.0.0",
   "description": "Angular 2 weather project on typescript",
-  "main": "src/ts/app.js",
+  "main": "src/app/app.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/vasiliraby/angular2ts.git"

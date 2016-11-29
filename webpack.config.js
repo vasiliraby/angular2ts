@@ -1,10 +1,10 @@
 module.exports = {
     entry: {
-        bundle: './src/ts/app.ts',
+        bundle: './src/app/app.ts',
     },
     output: {
         filename: 'bundle.js',
-        path: './public'
+        path: './dist'
     },
     resolve: {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
