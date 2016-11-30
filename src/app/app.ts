@@ -2,6 +2,7 @@ import LocationService from './location.service';
 import HttpService from './http.service';
 
 const WEATHER_API_KEY: string = '103b41f82bea70d2198ab91ea029dcde';
+const GOOGLEMAPS_API_KEY: string = 'AIzaSyAM7d7El7L7XpS5HWJYu2l8r-Yf7DjrGBQ';
 
 // Getting current location coordinates
 let locationService: LocationService = new LocationService();
@@ -12,8 +13,8 @@ locationService.getLocation().then((pos: Position) => {
 
     getWeatherData(lat, lng);
 },
-(reason) => {
-    let weatherContainer = document.getElementById('weather');
+(reason: PositionError) => {
+    let weatherContainer: HTMLElement = document.getElementById('weather');
 
     weatherContainer.classList.add('error');
     weatherContainer.textContent = `Error: ${reason.message}.`;
@@ -36,15 +37,15 @@ function getWeatherData(lat: number, lng: number): void {
 
     httpService.makeRequest(url).then((data) => {
         let weatherData = data.list;
-        let weatherFragment = document.createDocumentFragment();
-        let weatherContainer = document.getElementById('weather');
+        let weatherFragment: DocumentFragment = document.createDocumentFragment();
+        let weatherContainer: HTMLElement = document.getElementById('weather');
 
         weatherData.forEach((el: IWeather) => {
-            let item = document.createElement('div');
-            let name = document.createElement('span');
-            let temp = document.createElement('span');
-            let humidity = document.createElement('span');
-            let pressure = document.createElement('span');
+            let item: HTMLDivElement = document.createElement('div');
+            let name: HTMLSpanElement = document.createElement('span');
+            let temp: HTMLSpanElement = document.createElement('span');
+            let humidity: HTMLSpanElement = document.createElement('span');
+            let pressure: HTMLSpanElement = document.createElement('span');
 
             item.classList.add('weather-item');
             name.classList.add('weather-item__name');
@@ -66,6 +67,11 @@ function getWeatherData(lat: number, lng: number): void {
         });
 
         weatherContainer.appendChild(weatherFragment);
+    }, (reason: string) => {
+        let weatherContainer: HTMLElement = document.getElementById('weather');
+
+        weatherContainer.classList.add('error');
+        weatherContainer.textContent = reason;
     })
     .then(() => {
         initMap(lat, lng);
@@ -74,7 +80,7 @@ function getWeatherData(lat: number, lng: number): void {
 
 // Creating a map
 function initMap(latitude: number, longitude: number) {
-    let map = new google.maps.Map(document.getElementById('map'), {
+    let map: google.maps.Map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: latitude, lng: longitude},
         scrollwheel: false,
         zoom: 10
