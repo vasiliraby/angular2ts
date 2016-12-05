@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import LocationService from './location.service';
 
 @Component({
     selector: 'map-component',
@@ -6,4 +8,34 @@ import { Component } from '@angular/core';
     styleUrls: ['src/app/templates/map.component.css']
 })
 
-export class MapComponent { }
+export class MapComponent implements OnInit {
+
+    ngOnInit(): void {
+        this.showMap();
+    }
+
+    showMap(): void {
+        let locationService: LocationService = new LocationService();
+
+        locationService.getLocation().then((pos: Position) => {
+            let lng: number = pos.coords.longitude;
+            let lat: number = pos.coords.latitude;
+
+            initMap(lat, lng);
+
+            function initMap(latitude: number, longitude: number) {
+                let map: google.maps.Map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: latitude, lng: longitude},
+                    scrollwheel: false,
+                    zoom: 10
+                });
+            };
+        },
+        (reason: PositionError) => {
+            let weatherContainer: HTMLElement = document.getElementById('weather');
+
+            weatherContainer.classList.add('error');
+            weatherContainer.textContent = `Error: ${reason.message}.`;
+        });
+    }
+}
