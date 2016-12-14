@@ -3,8 +3,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        bundle: ['./src/main.ts', './src/styles/main.css'],
-        vendor: './src/app/vendor.ts'
+        bundle: ['./src/main.ts', './src/styles/main.css']
     },
     output: {
         filename: '[name].js',
@@ -34,9 +33,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('styles.css'),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['bundle', 'vendor']
-        }),
+        new ExtractTextPlugin('styles.css')
     ]
 };
