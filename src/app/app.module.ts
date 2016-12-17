@@ -6,11 +6,11 @@ import 'rxjs';
 import 'zone.js';
 import 'reflect-metadata';
 
-import { AppComponent }     from './app.component';
-import { AppHeader }        from './header.component';
-import { AppFooter }        from './footer.component';
-import { WeatherComponent } from './weather.component';
-import { MapComponent }     from './map.component';
+import { AppComponent }     from './components/app/app.component';
+import { AppHeader }        from './components/header/header.component';
+import { AppFooter }        from './components/footer/footer.component';
+import { WeatherComponent } from './components/weather/weather.component';
+import { MapComponent }     from './components/map/map.component';
 
 @NgModule({
     imports:      [ BrowserModule ],

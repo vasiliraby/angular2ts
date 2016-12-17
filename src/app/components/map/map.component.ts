@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import LocationService from './location.service';
+import LocationService from '../../services/location.service';
 
 @Component({
     selector: 'map-component',
-    templateUrl: 'src/app/templates/map.component.html',
-    styleUrls: ['src/app/templates/map.component.css']
+    templateUrl: 'src/app/templates/map/map.component.html',
+    styleUrls: ['src/app/templates/map/map.component.css']
 })
 
 export class MapComponent implements OnInit {

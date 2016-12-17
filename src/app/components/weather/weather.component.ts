@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { RoundToPrecisionPipe } from './pipes/round-to-precision.pipe';
-import { KelvinToCelciusPipe } from './pipes/kelvin-to-celcius.pipe';
+import { RoundToPrecisionPipe } from '../../pipes/round-to-precision.pipe';
+import { KelvinToCelciusPipe } from '../../pipes/kelvin-to-celcius.pipe';
 
-import LocationService from './location.service';
-import HttpService from './http.service';
+import LocationService from '../../services/location.service';
+import HttpService from '../../services/http.service';
 
 @Component({
     selector: 'weather-component',
-    templateUrl: 'src/app/templates/weather.component.html',
-    styleUrls: ['src/app/templates/weather.component.css']
+    templateUrl: 'src/app/templates/weather/weather.component.html',
+    styleUrls: ['src/app/templates/weather/weather.component.css']
 })
 
 export class WeatherComponent implements OnInit {
