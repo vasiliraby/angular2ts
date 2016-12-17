@@ -1,5 +1,5 @@
 <div id="weather">
-    <div *ngIf="!weatherIsLoaded" class="preloader">Fetching Weather Data. Please wait...</div>
+    <preloader *ngIf="!weatherIsLoaded" message="Fetching Weather Data. Please wait..."></preloader>
     <div *ngIf="weatherIsLoaded">
         <div class="weather-refresh">
             <span>Last refreshed on: </span>
