@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RoundToPrecisionPipe } from './pipes/round-to-precision.pipe';
+import { KelvinToCelciusPipe } from './pipes/kelvin-to-celcius.pipe';
 
 import LocationService from './location.service';
 import HttpService from './http.service';
@@ -15,12 +17,16 @@ export class WeatherComponent implements OnInit {
         this.showWeather();
     }
 
+    weatherIsLoaded: boolean = false;
+    actualWeatherDate: number;
+
     showWeather(): void {
+        let self: this = this;
         let locationService: LocationService = new LocationService();
 
         locationService.getLocation().then((pos: Position) => {
-        let lng: number = pos.coords.longitude;
-        let lat: number = pos.coords.latitude;
+        let lng: number = new RoundToPrecisionPipe().transform(pos.coords.longitude, 5);
+        let lat: number = new RoundToPrecisionPipe().transform(pos.coords.latitude, 5);
 
         getWeatherData(lat, lng);
 
@@ -39,9 +45,10 @@ export class WeatherComponent implements OnInit {
             };
 
             httpService.makeRequest(url).then((data) => {
-            let weatherData = data.list;
-            let weatherFragment: DocumentFragment = document.createDocumentFragment();
-            let weatherContainer: HTMLElement = document.getElementById('weather');
+                let weatherData = data.list;
+                let actualWeatherDate: number = Number(weatherData[0].dt + '000');
+                let weatherFragment: DocumentFragment = document.createDocumentFragment();
+                let weatherContainer: HTMLElement = document.getElementById('weather');
 
             weatherData.forEach((el: IWeather) => {
                 let item: HTMLDivElement = document.createElement('div');
@@ -57,7 +64,7 @@ export class WeatherComponent implements OnInit {
                 pressure.classList.add('weather-item__pressure');
 
                 name.textContent = el.name;
-                temp.textContent = `Temp: ${(el.main.temp - 273.15).toFixed(1)} \u2103`;
+                temp.textContent = `Temp: ${new KelvinToCelciusPipe().transform(el.main.temp)}`;
                 humidity.textContent = `Humidity: ${el.main.humidity} %`;
                 pressure.textContent = `Pressure: ${el.main.pressure} hpa`;
 
@@ -69,6 +76,8 @@ export class WeatherComponent implements OnInit {
                 weatherFragment.appendChild(item);
             });
 
+            self.weatherIsLoaded = true;
+            self.actualWeatherDate = actualWeatherDate;
             weatherContainer.appendChild(weatherFragment);
         }, (reason: string) => {
             let weatherContainer: HTMLElement = document.getElementById('weather');
