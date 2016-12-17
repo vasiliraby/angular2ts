@@ -21,38 +21,37 @@ export class WeatherComponent implements OnInit {
     }
 
     showWeather(): void {
-        let self: this = this;
         let locationService: LocationService = new LocationService();
         let weatherContainer: HTMLElement = document.getElementById('weather');
 
         locationService.getLocation().then((pos: Position) => {
-        let lng: number = new RoundToPrecisionPipe().transform(pos.coords.longitude, 5);
-        let lat: number = new RoundToPrecisionPipe().transform(pos.coords.latitude, 5);
+            let lng: number = new RoundToPrecisionPipe().transform(pos.coords.longitude, 5);
+            let lat: number = new RoundToPrecisionPipe().transform(pos.coords.latitude, 5);
 
-        getWeatherData(lat, lng);
+            this.getWeatherData(lat, lng);
+        },
+        (reason: PositionError) => {
+            weatherContainer.classList.add('error');
+            weatherContainer.textContent = `Error: ${reason.message}.`;
+        });
+    }
 
-        function getWeatherData(lat: number, lng: number): void {
-            let httpService: HttpService = new HttpService();
-            const WEATHER_API_KEY: string = '103b41f82bea70d2198ab91ea029dcde';
-            let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=500&lang=ru&APPID=' + WEATHER_API_KEY;
+    private getWeatherData(lat: number, lng: number): void {
+        let httpService: HttpService = new HttpService();
+        const WEATHER_API_KEY: string = '103b41f82bea70d2198ab91ea029dcde';
+        let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=500&lang=ru&APPID=' + WEATHER_API_KEY;
 
-            httpService.makeRequest(url).then((data) => {
-                let weatherData = data.list;
-                self.weatherItems = data.list;
+        httpService.makeRequest(url).then((data) => {
+            let weatherData = data.list;
+            this.weatherItems = data.list;
 
-                self.actualWeatherDate = Number(weatherData[0].dt + '000');
-                self.weatherIsLoaded = true;
-            }, (reason: string) => {
-                let weatherContainer: HTMLElement = document.getElementById('weather');
+            this.actualWeatherDate = Number(weatherData[0].dt + '000');
+            this.weatherIsLoaded = true;
+        }, (reason: string) => {
+            let weatherContainer: HTMLElement = document.getElementById('weather');
 
-                weatherContainer.classList.add('error');
-                weatherContainer.textContent = reason;
-            });
-        }
-    },
-    (reason: PositionError) => {
-        weatherContainer.classList.add('error');
-        weatherContainer.textContent = `Error: ${reason.message}.`;
-    });
+            weatherContainer.classList.add('error');
+            weatherContainer.textContent = reason;
+        });
     }
 }
