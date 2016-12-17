@@ -1,5 +1,17 @@
-<div *ngIf="weatherIsLoaded" class="weather-refresh">
-    <span>Last refreshed on: </span>
-    <span class="last-refreshed">{{ actualWeatherDate | date: "dd/MM/y H:mm" }}</span>
+<div id="weather">
+    <div *ngIf="!weatherIsLoaded" class="preloader">Fetching Weather Data. Please wait...</div>
+    <div *ngIf="weatherIsLoaded">
+        <div class="weather-refresh">
+            <span>Last refreshed on: </span>
+            <span class="last-refreshed">{{ actualWeatherDate | date: "dd/MM/y H:mm" }}</span>
+        </div>
+        <div class="weather__items">
+            <div *ngFor="let item of weatherItems" class="weather-item">
+                <span class="weather-item__name">{{item.name}}</span>
+                <span class="weather-item__temp">Temp: {{item.main.temp | kelvinToCelcius}}</span>
+                <span class="weather-item__humidity">Humidity: {{item.main.humidity}} %</span>
+                <span class="weather-item__pressure">Pressure: {{item.main.pressure}} hpa</span>
+            </div>
+        </div>
+    </div>
 </div>
-<div id="weather"></div>
