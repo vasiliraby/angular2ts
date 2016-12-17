@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'preloader',
     templateUrl: 'src/app/templates/preloader/preloader.component.html',
-    styleUrls: ['src/app/templates/preloader/preloader.component.css']
+    styleUrls: ['src/app/templates/preloader/preloader.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class Preloader {
