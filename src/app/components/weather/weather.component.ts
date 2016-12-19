@@ -15,6 +15,7 @@ export class WeatherComponent implements OnInit {
     weatherItems: IWeatherItems;
     actualWeatherDate: number;
     weatherIsLoaded: boolean = false;
+    favoriteItem: HTMLElement = null;
 
     ngOnInit(): void {
         this.showWeather();
@@ -53,5 +54,28 @@ export class WeatherComponent implements OnInit {
             weatherContainer.classList.add('error');
             weatherContainer.textContent = reason;
         });
+    }
+
+    toggleFavorite(event: MouseEvent): void {
+        let self: this = this;
+        let el: EventTarget = event.target;
+
+        toggler(el as HTMLElement);
+
+        function toggler(element: HTMLElement) {
+            if (element.classList.contains('weather-item')) {
+                if (self.favoriteItem === element) {
+                    self.favoriteItem.classList.remove('favorite');
+                    self.favoriteItem = null;
+                    return;
+                } else if (self.favoriteItem) {
+                    self.favoriteItem.classList.remove('favorite');
+                }
+                self.favoriteItem = element;
+                self.favoriteItem.classList.add('favorite');
+            } else if (element.parentElement && element.parentElement !== el) {
+                toggler(element.parentElement);
+            }
+        }
     }
 }

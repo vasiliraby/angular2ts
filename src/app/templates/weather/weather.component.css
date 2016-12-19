@@ -1,16 +1,17 @@
-.weather__items {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 #weather.error {
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-:host /deep/ .weather-item {
+.weather__items {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.weather-item {
+    display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: space-between;
     width: 150px;
@@ -22,7 +23,12 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
 }
 
-:host /deep/ .weather-item__name {
+.weather-item:hover {
+    cursor: pointer;
+    box-shadow: 0 0 8px 2px royalblue;
+}
+
+.weather-item__name {
     display: block;
     text-align: center;
 }
@@ -36,6 +42,14 @@
     color: #05abe0;
 }
 
-.preloader {
-    text-align: center;
+.favorite:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 0;
+    right: 0;
+    background-image: url(src/img/star.svg);
+    background-size: contain;
 }
