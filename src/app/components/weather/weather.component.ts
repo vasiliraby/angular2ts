@@ -7,8 +7,8 @@ import HttpService              from '../../services/http.service';
 
 @Component({
     selector: 'weather-component',
-    templateUrl: 'src/app/templates/weather/weather.component.html',
-    styleUrls: ['src/app/templates/weather/weather.component.css']
+    templateUrl: 'src/app/components/weather/weather.component.html',
+    styleUrls: ['src/app/components/weather/weather.component.css']
 })
 
 export class WeatherComponent implements OnInit {

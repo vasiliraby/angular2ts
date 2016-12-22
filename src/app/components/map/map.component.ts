@@ -4,8 +4,8 @@ import LocationService from '../../services/location.service';
 
 @Component({
     selector: 'map-component',
-    templateUrl: 'src/app/templates/map/map.component.html',
-    styleUrls: ['src/app/templates/map/map.component.css'],
+    templateUrl: 'src/app/components/map/map.component.html',
+    styleUrls: ['src/app/components/map/map.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 

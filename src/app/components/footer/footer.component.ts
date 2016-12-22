@@ -2,8 +2,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: '[app-footer]',
-    templateUrl: 'src/app/templates/footer/footer.component.html',
-    styleUrls: ['src/app/templates/footer/footer.component.css'],
+    templateUrl: 'src/app/components/footer/footer.component.html',
+    styleUrls: ['src/app/components/footer/footer.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
