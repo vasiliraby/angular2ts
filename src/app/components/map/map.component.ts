@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import LocationService from '../../services/location.service';
 
@@ -10,6 +10,12 @@ import LocationService from '../../services/location.service';
 })
 
 export class MapComponent implements OnInit {
+    constructor(private cd: ChangeDetectorRef) {}
+
+    lat: number = null;
+    lng: number = null;
+    zoom: number = 10;
+    scrollwheel: boolean = false;
 
     ngOnInit(): void {
         this.showMap();
@@ -19,18 +25,9 @@ export class MapComponent implements OnInit {
         let locationService: LocationService = new LocationService();
 
         locationService.getLocation().then((pos: Position) => {
-            let lng: number = pos.coords.longitude;
-            let lat: number = pos.coords.latitude;
-
-            initMap(lat, lng);
-
-            function initMap(latitude: number, longitude: number) {
-                let map: google.maps.Map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: latitude, lng: longitude},
-                    scrollwheel: false,
-                    zoom: 10
-                });
-            };
+            this.lng = pos.coords.longitude;
+            this.lat = pos.coords.latitude;
+            this.cd.markForCheck();
         },
         (reason: PositionError) => {
             let weatherContainer: HTMLElement = document.getElementById('weather');
