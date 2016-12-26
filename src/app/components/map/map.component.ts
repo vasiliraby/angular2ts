@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
 
 import LocationService from '../../services/location.service';
 
@@ -6,34 +6,34 @@ import LocationService from '../../services/location.service';
     selector: 'map-component',
     templateUrl: 'src/app/components/map/map.component.html',
     styleUrls: ['src/app/components/map/map.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MapComponent implements OnInit {
-    constructor(private cd: ChangeDetectorRef) {}
+export class MapComponent {
+    // constructor(private cd: ChangeDetectorRef) {}
 
-    lat: number = null;
-    lng: number = null;
+    // Set default coords if nothing was in @input
+    @Input() lat: number = 54; 
+    @Input() lng: number = 27;
     zoom: number = 10;
     scrollwheel: boolean = false;
 
-    ngOnInit(): void {
-        this.showMap();
-    }
+    // ngOnInit(): void {
+    //     this.showMap();
+    // }
 
-    showMap(): void {
-        let locationService: LocationService = new LocationService();
+    // showMap(): void {
+    //     let locationService: LocationService = new LocationService();
 
-        locationService.getLocation().then((pos: Position) => {
-            this.lng = pos.coords.longitude;
-            this.lat = pos.coords.latitude;
-            this.cd.markForCheck();
-        },
-        (reason: PositionError) => {
-            let weatherContainer: HTMLElement = document.getElementById('weather');
+    //     locationService.getLocation().then((pos: Position) => {
+    //         this.lng = pos.coords.longitude;
+    //         this.lat = pos.coords.latitude;
+    //         this.cd.markForCheck();
+    //     },
+    //     (reason: PositionError) => {
+    //         let weatherContainer: HTMLElement = document.getElementById('weather');
 
-            weatherContainer.classList.add('error');
-            weatherContainer.textContent = `Error: ${reason.message}.`;
-        });
-    }
+    //         weatherContainer.classList.add('error');
+    //         weatherContainer.textContent = `Error: ${reason.message}.`;
+    //     });
+    // }
 }

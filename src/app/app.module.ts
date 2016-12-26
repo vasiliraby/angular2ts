@@ -16,11 +16,13 @@ import { MapComponent }        from './components/map/map.component';
 import { KelvinToCelciusPipe } from './pipes/kelvin-to-celcius.pipe';
 import { Preloader }           from './components/preloader/preloader.component';
 
+const GOOGLEMAPS_API_KEY: string = 'AIzaSyAM7d7El7L7XpS5HWJYu2l8r-Yf7DjrGBQ';
+
 @NgModule({
     imports: [
         BrowserModule,
         AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyAM7d7El7L7XpS5HWJYu2l8r-Yf7DjrGBQ'
+        apiKey: GOOGLEMAPS_API_KEY
         })
     ],
     declarations: [
