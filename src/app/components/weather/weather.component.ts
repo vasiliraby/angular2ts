@@ -1,9 +1,9 @@
-import { Component, OnInit }    from '@angular/core';
+import { Component, OnInit, Input }    from '@angular/core';
 
 import { IWeatherItems }        from './weather-items.interface';
 import { RoundToPrecisionPipe } from '../../pipes/round-to-precision.pipe';
-import LocationService          from '../../services/location.service';
 import HttpService              from '../../services/http.service';
+// import LocationService          from '../../services/location.service';
 
 @Component({
     selector: 'weather-component',
@@ -12,6 +12,8 @@ import HttpService              from '../../services/http.service';
 })
 
 export class WeatherComponent implements OnInit {
+    @Input() lat: number;
+    @Input() lng: number;
     weatherItems: IWeatherItems;
     actualWeatherDate: number;
     weatherIsLoaded: boolean = false;
@@ -22,19 +24,19 @@ export class WeatherComponent implements OnInit {
     }
 
     showWeather(): void {
-        let locationService: LocationService = new LocationService();
-        let weatherContainer: HTMLElement = document.getElementById('weather');
+        // let locationService: LocationService = new LocationService();
+        // let weatherContainer: HTMLElement = document.getElementById('weather');
 
-        locationService.getLocation().then((pos: Position) => {
-            let lng: number = new RoundToPrecisionPipe().transform(pos.coords.longitude, 5);
-            let lat: number = new RoundToPrecisionPipe().transform(pos.coords.latitude, 5);
+        // locationService.getLocation().then((pos: Position) => {
+        //     let lng: number = new RoundToPrecisionPipe().transform(pos.coords.longitude, 5);
+        //     let lat: number = new RoundToPrecisionPipe().transform(pos.coords.latitude, 5);
 
-            this.getWeatherData(lat, lng);
-        },
-        (reason: PositionError) => {
-            weatherContainer.classList.add('error');
-            weatherContainer.textContent = `Error: ${reason.message}.`;
-        });
+            this.getWeatherData(this.lat, this.lng);
+        // },
+        // (reason: PositionError) => {
+        //     weatherContainer.classList.add('error');
+        //     weatherContainer.textContent = `Error: ${reason.message}.`;
+        // });
     }
 
     private getWeatherData(lat: number, lng: number): void {

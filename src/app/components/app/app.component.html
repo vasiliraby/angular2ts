@@ -1,6 +1,6 @@
 <header app-header></header> 
 <main>
-    <weather-component></weather-component>
-    <map-component></map-component>
+    <weather-component [lat]="lat" [lng]="lng"></weather-component>
+    <map-component [lat]="lat" [lng]="lng"></map-component>
 </main>
 <footer app-footer></footer>
