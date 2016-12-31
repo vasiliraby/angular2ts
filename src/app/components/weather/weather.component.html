@@ -1,14 +1,13 @@
-<div id="weather">
-    <preloader *ngIf="!weatherIsLoaded" message="Fetching Weather Data. Please wait..."></preloader>
-    <div *ngIf="weatherIsLoaded" (click)="toggleFavorite($event)">
-        <weather-refresh-date [actualWeatherDate]="actualWeatherDate"></weather-refresh-date>
-        <div class="weather__items">
-            <div *ngFor="let item of weatherItems" class="weather-item">
-                <span class="weather-item__name">{{item.name}}</span>
-                <span class="weather-item__temp">Temp: {{item.main.temp | kelvinToCelcius}}</span>
-                <span class="weather-item__humidity">Humidity: {{item.main.humidity}} %</span>
-                <span class="weather-item__pressure">Pressure: {{item.main.pressure}} hpa</span>
-            </div>
+<preloader *ngIf="!weatherIsLoaded && !errorMsg" message="Fetching Weather Data. Please wait..."></preloader>
+<div *ngIf="weatherIsLoaded" (click)="toggleFavorite($event)">
+    <weather-refresh-date [actualWeatherDate]="actualWeatherDate"></weather-refresh-date>
+    <div class="weather__items">
+        <div *ngFor="let item of weatherItems" class="weather-item">
+            <span class="weather-item__name">{{item.name}}</span>
+            <span class="weather-item__temp">Temp: {{item.main.temp | kelvinToCelcius}}</span>
+            <span class="weather-item__humidity">Humidity: {{item.main.humidity}} %</span>
+            <span class="weather-item__pressure">Pressure: {{item.main.pressure}} hpa</span>
         </div>
     </div>
 </div>
+<div *ngIf="errorMsg && !weatherIsLoaded" class="error">{{errorMsg}}</div>

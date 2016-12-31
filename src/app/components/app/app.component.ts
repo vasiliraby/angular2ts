@@ -17,15 +17,11 @@ export class AppComponent {
             this.lat = pos.coords.latitude;
             this.loaded = true;
         },
-        (reason: PositionError) => {
-            let weatherContainer: HTMLElement = document.getElementById('weather');
-
-            weatherContainer.classList.add('error');
-            weatherContainer.textContent = `Error: ${reason.message}.`;
-        });
+        (reason: PositionError) => this.errorMsg = reason.message);
     }
 
     loaded: boolean = false;
+    errorMsg: string;
     lat: number;
     lng: number;
 }

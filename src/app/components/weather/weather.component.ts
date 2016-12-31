@@ -25,6 +25,7 @@ export class WeatherComponent implements OnInit {
     actualWeatherDate: number;
     weatherIsLoaded: boolean = false;
     favoriteItem: HTMLElement = null;
+    errorMsg: string;
 
     ngOnInit(): void {
         this.lat = new RoundToPrecisionPipe().transform(this.lat, 5);
@@ -36,23 +37,23 @@ export class WeatherComponent implements OnInit {
     private getWeatherData(lat: number, lng: number): void {
         const WEATHER_API_KEY: string = '103b41f82bea70d2198ab91ea029dcde';
         let httpService: HttpService = new HttpService();
-        let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=500&lang=ru&APPID=' + WEATHER_API_KEY;
+        let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=30&lang=ru&APPID=' + WEATHER_API_KEY;
 
         httpService.makeRequest(url).then((data) => {
             let weatherData = data.list;
-            this.weatherItems = data.list;
+            let currentWeatherDate = Number(weatherData[0].dt + '000');
 
             // Update the view only if the data was changed
-            if (this.actualWeatherDate !== Number(weatherData[0].dt + '000')) {
-                this.actualWeatherDate = Number(weatherData[0].dt + '000');
+            if (this.actualWeatherDate !== currentWeatherDate) {
+                this.weatherItems = weatherData;
+                this.actualWeatherDate = currentWeatherDate;
                 this.weatherIsLoaded = true;
                 this.cd.markForCheck();
             }
         }, (reason: string) => {
-            let weatherContainer: HTMLElement = document.getElementById('weather');
-
-            weatherContainer.classList.add('error');
-            weatherContainer.textContent = reason;
+            this.weatherIsLoaded = false;
+            this.errorMsg = reason;
+            this.cd.markForCheck();
         });
     }
 
