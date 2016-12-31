@@ -1,17 +1,24 @@
-import { Component, OnInit, Input }    from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef }    from '@angular/core';
 
 import { IWeatherItems }        from './weather-items.interface';
 import { RoundToPrecisionPipe } from '../../pipes/round-to-precision.pipe';
 import HttpService              from '../../services/http.service';
-// import LocationService          from '../../services/location.service';
 
 @Component({
     selector: 'weather-component',
     templateUrl: 'src/app/components/weather/weather.component.html',
-    styleUrls: ['src/app/components/weather/weather.component.css']
+    styleUrls: ['src/app/components/weather/weather.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class WeatherComponent implements OnInit {
+    constructor(private cd: ChangeDetectorRef) {
+        // Set weather update every 5 min
+        setInterval(() => {
+            this.getWeatherData(this.lat, this.lng);
+        }, 60000);
+    }
+
     @Input() lat: number;
     @Input() lng: number;
     weatherItems: IWeatherItems;
@@ -20,36 +27,27 @@ export class WeatherComponent implements OnInit {
     favoriteItem: HTMLElement = null;
 
     ngOnInit(): void {
-        this.showWeather();
-    }
+        this.lat = new RoundToPrecisionPipe().transform(this.lat, 5);
+        this.lng = new RoundToPrecisionPipe().transform(this.lng, 5);
 
-    showWeather(): void {
-        // let locationService: LocationService = new LocationService();
-        // let weatherContainer: HTMLElement = document.getElementById('weather');
-
-        // locationService.getLocation().then((pos: Position) => {
-        //     let lng: number = new RoundToPrecisionPipe().transform(pos.coords.longitude, 5);
-        //     let lat: number = new RoundToPrecisionPipe().transform(pos.coords.latitude, 5);
-
-            this.getWeatherData(this.lat, this.lng);
-        // },
-        // (reason: PositionError) => {
-        //     weatherContainer.classList.add('error');
-        //     weatherContainer.textContent = `Error: ${reason.message}.`;
-        // });
+        this.getWeatherData(this.lat, this.lng);
     }
 
     private getWeatherData(lat: number, lng: number): void {
-        let httpService: HttpService = new HttpService();
         const WEATHER_API_KEY: string = '103b41f82bea70d2198ab91ea029dcde';
+        let httpService: HttpService = new HttpService();
         let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=500&lang=ru&APPID=' + WEATHER_API_KEY;
 
         httpService.makeRequest(url).then((data) => {
             let weatherData = data.list;
             this.weatherItems = data.list;
 
-            this.actualWeatherDate = Number(weatherData[0].dt + '000');
-            this.weatherIsLoaded = true;
+            // Update the view only if the data was changed
+            if (this.actualWeatherDate !== Number(weatherData[0].dt + '000')) {
+                this.actualWeatherDate = Number(weatherData[0].dt + '000');
+                this.weatherIsLoaded = true;
+                this.cd.markForCheck();
+            }
         }, (reason: string) => {
             let weatherContainer: HTMLElement = document.getElementById('weather');
 

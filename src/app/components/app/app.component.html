@@ -1,6 +1,6 @@
 <header app-header></header> 
 <main>
-    <weather-component [lat]="lat" [lng]="lng"></weather-component>
-    <map-component [lat]="lat" [lng]="lng"></map-component>
+    <weather-component *ngIf="loaded" [lat]="lat" [lng]="lng"></weather-component>
+    <map-component *ngIf="loaded" [lat]="lat" [lng]="lng"></map-component>
 </main>
 <footer app-footer></footer>

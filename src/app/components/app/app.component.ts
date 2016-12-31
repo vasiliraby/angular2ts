@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import LocationService from '../../services/location.service';
 
@@ -8,16 +8,14 @@ import LocationService from '../../services/location.service';
     styleUrls: ['src/app/components/app/app.component.css'],
 })
 
-export class AppComponent implements OnInit {
-    public lat: number;
-    public lng: number;
-
-    ngOnInit(): void {
+export class AppComponent {
+    constructor() {
         let locationService: LocationService = new LocationService();
 
         locationService.getLocation().then((pos: Position) => {
             this.lng = pos.coords.longitude;
             this.lat = pos.coords.latitude;
+            this.loaded = true;
         },
         (reason: PositionError) => {
             let weatherContainer: HTMLElement = document.getElementById('weather');
@@ -26,4 +24,8 @@ export class AppComponent implements OnInit {
             weatherContainer.textContent = `Error: ${reason.message}.`;
         });
     }
+
+    loaded: boolean = false;
+    lat: number;
+    lng: number;
 }
