@@ -1,10 +1,7 @@
 <div id="weather">
     <preloader *ngIf="!weatherIsLoaded" message="Fetching Weather Data. Please wait..."></preloader>
     <div *ngIf="weatherIsLoaded" (click)="toggleFavorite($event)">
-        <div class="weather-refresh">
-            <span>Last refreshed on: </span>
-            <span class="last-refreshed">{{ actualWeatherDate | date: "dd/MM/y H:mm" }}</span>
-        </div>
+        <weather-refresh-date [actualWeatherDate]="actualWeatherDate"></weather-refresh-date>
         <div class="weather__items">
             <div *ngFor="let item of weatherItems" class="weather-item">
                 <span class="weather-item__name">{{item.name}}</span>
