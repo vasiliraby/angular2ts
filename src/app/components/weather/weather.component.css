@@ -1,9 +1,3 @@
-#weather.error {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
 .weather__items {
     display: flex;
     flex-wrap: wrap;
