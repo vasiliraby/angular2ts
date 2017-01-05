@@ -12,20 +12,20 @@ import HttpService              from '../../services/http.service';
 })
 
 export class WeatherComponent implements OnInit {
+    @Input() lat: number;
+    @Input() lng: number;
+    weatherItems: IWeatherItems;
+    actualWeatherDate: number;
+    weatherIsLoaded: boolean = false;
+    favoriteItem: Component;
+    errorMsg: string;
+
     constructor(private cd: ChangeDetectorRef) {
         // Set weather update every 5 min
         setInterval(() => {
             this.getWeatherData(this.lat, this.lng);
         }, 60000);
     }
-
-    @Input() lat: number;
-    @Input() lng: number;
-    weatherItems: IWeatherItems;
-    actualWeatherDate: number;
-    weatherIsLoaded: boolean = false;
-    favoriteItem: HTMLElement = null;
-    errorMsg: string;
 
     ngOnInit(): void {
         this.lat = new RoundToPrecisionPipe().transform(this.lat, 5);
@@ -57,26 +57,9 @@ export class WeatherComponent implements OnInit {
         });
     }
 
-    toggleFavorite(event: MouseEvent): void {
-        let self: this = this;
-        let el: EventTarget = event.target;
-
-        toggler(el as HTMLElement);
-
-        function toggler(element: HTMLElement) {
-            if (element.classList.contains('weather-item')) {
-                if (self.favoriteItem === element) {
-                    self.favoriteItem.classList.remove('favorite');
-                    self.favoriteItem = null;
-                    return;
-                } else if (self.favoriteItem) {
-                    self.favoriteItem.classList.remove('favorite');
-                }
-                self.favoriteItem = element;
-                self.favoriteItem.classList.add('favorite');
-            } else if (element.parentElement && element.parentElement !== el) {
-                toggler(element.parentElement);
-            }
-        }
+    toggleFavorite(favItem: Component): void {
+        if (this.favoriteItem === favItem) {
+            this.favoriteItem = null;
+        } else this.favoriteItem = favItem;
     }
 }
