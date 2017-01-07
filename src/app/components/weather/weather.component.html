@@ -2,7 +2,16 @@
 <div *ngIf="weatherIsLoaded">
     <weather-refresh-date [actualWeatherDate]="actualWeatherDate"></weather-refresh-date>
     <div class="weather__items">
-        <weather-item *ngFor="let itemData of weatherItems" [itemData]="itemData" #favItem (click)="toggleFavorite(favItem)" [ngClass]="{favorite: favoriteItem === favItem}" class="weather-item"></weather-item>
+        <weather-item
+            #favItem
+            *ngFor="let itemData of weatherItems"
+            [itemData]="itemData"
+            (click)="toggleFavorite(favItem)"
+            [ngClass]="{favorite: favoriteItem === favItem}"
+            [itemTemp]="itemData.main.temp | kelvinToCelcius"
+            color-temp
+            class="weather-item">
+        </weather-item>
     </div>
 </div>
 <div *ngIf="errorMsg && !weatherIsLoaded" class="error">{{errorMsg}}</div>

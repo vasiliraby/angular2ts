@@ -15,8 +15,12 @@ import { WeatherComponent }    from './components/weather/weather.component';
 import { WeatherItem }         from './components/weather-item/weather-item.component';
 import { WeatherRefreshDate }  from './components/weather-refresh-date/weather-refresh-date.component';
 import { MapComponent }        from './components/map/map.component';
-import { KelvinToCelciusPipe } from './pipes/kelvin-to-celcius.pipe';
+import { WindInfo }            from './components/wind-info/wind-info.component';
 import { Preloader }           from './components/preloader/preloader.component';
+import { OverallConditions }   from './components/overall-conditions/overall-conditions.component';
+import { KelvinToCelciusPipe } from './pipes/kelvin-to-celcius.pipe';
+import { ColorTemp }           from './directives/color-temp/color-temp.directive';
+import { Rotate }              from './directives/rotate/rotate.directive';
 
 const GOOGLEMAPS_API_KEY: string = 'AIzaSyAM7d7El7L7XpS5HWJYu2l8r-Yf7DjrGBQ';
 
@@ -35,8 +39,12 @@ const GOOGLEMAPS_API_KEY: string = 'AIzaSyAM7d7El7L7XpS5HWJYu2l8r-Yf7DjrGBQ';
         WeatherItem,
         WeatherRefreshDate,
         MapComponent,
+        WindInfo,
+        OverallConditions,
+        Preloader,
         KelvinToCelciusPipe,
-        Preloader
+        ColorTemp,
+        Rotate
     ],
     bootstrap: [ AppComponent ]
 })

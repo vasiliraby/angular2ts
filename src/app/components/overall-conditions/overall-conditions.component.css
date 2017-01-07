@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+}
+
+span {
+    align-self: center;
+}
+
+img {
+    margin-right: 0.25rem;
+}

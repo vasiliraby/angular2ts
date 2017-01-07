@@ -37,7 +37,7 @@ export class WeatherComponent implements OnInit {
     private getWeatherData(lat: number, lng: number): void {
         const WEATHER_API_KEY: string = '103b41f82bea70d2198ab91ea029dcde';
         let httpService: HttpService = new HttpService();
-        let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=30&lang=ru&APPID=' + WEATHER_API_KEY;
+        let url: string = 'http://api.openweathermap.org/data/2.5/find?lat=' + lat + '&lon=' + lng + '&cnt=30&lang=en&APPID=' + WEATHER_API_KEY;
 
         httpService.makeRequest(url).then((data) => {
             let weatherData = data.list;
