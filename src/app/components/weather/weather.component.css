@@ -1,19 +1,14 @@
-#weather {
+.weather__items {
     display: flex;
     flex-wrap: wrap;
 }
 
-#weather.error {
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-:host /deep/ .weather-item {
+.weather-item {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: space-between;
-    width: 150px;
+    width: 170px;
     height: 100px;
     margin: 0.5rem;
     padding: 0.25rem;
@@ -22,16 +17,19 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
 }
 
-:host /deep/ .weather-item__name {
+.weather-item:hover {
+    cursor: pointer;
+    box-shadow: 0 0 8px 2px royalblue;
+}
+
+.favorite:after {
+    content: '';
     display: block;
-    text-align: center;
-}
-
-.weather-refresh {
-    margin: 0 0.5rem;
-    font-size: 1.5rem;
-}
-
-.last-refreshed {
-    color: #05abe0;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 0;
+    right: 0;
+    background-image: url(src/img/star.svg);
+    background-size: contain;
 }

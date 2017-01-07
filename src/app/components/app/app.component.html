@@ -1,0 +1,9 @@
+<header app-header></header> 
+<main>
+    <div *ngIf="loaded">
+        <weather-component *ngIf="loaded" [lat]="lat" [lng]="lng"></weather-component>
+        <map-component *ngIf="loaded" [lat]="lat" [lng]="lng"></map-component>
+    </div>
+    <div *ngIf="errorMsg" class="error">Error: {{errorMsg}}</div>
+</main>
+<footer app-footer></footer>
