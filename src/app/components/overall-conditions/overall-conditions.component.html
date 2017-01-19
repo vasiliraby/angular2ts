@@ -1,0 +1,20 @@
+<span>{{overallData.description}}</span>
+<img src="http://openweathermap.org/img/w/{{overallData.icon}}.png" alt="weather-icon">
+
+<!--
+    Using ngSwitch for loading icons seems inefficient to me.
+    I'll implement some ngSwitch logic just to show that I catch that but I'll leave it commented.
+    Comment the code above and uncomment the code below to check that it works fine.
+    Full list of conditions: https://openweathermap.org/weather-conditions
+    We have to create lots of cases, I'll implement some of them.
+ -->
+
+<!--<span>{{overallData.description}}</span>
+<span [ngSwitch]="overallData.id">
+    <img *ngSwitchCase="8020" src="http://openweathermap.org/img/w/01d.png" alt="weather-icon">
+    <img *ngSwitchCase="801" src="http://openweathermap.org/img/w/02d.png" alt="weather-icon">
+    <img *ngSwitchCase="802" src="http://openweathermap.org/img/w/03d.png" alt="weather-icon">
+    <img *ngSwitchCase="600" src="http://openweathermap.org/img/w/13d.png" alt="weather-icon">
+    <img *ngSwitchCase="601 || 602" src="http://openweathermap.org/img/w/13d.png" alt="weather-icon">
+    <img *ngSwitchDefault src="http://openweathermap.org/img/w/50n.png" alt="No icon - show mist">
+</span>-->

@@ -5,4 +5,12 @@ export interface IWeatherItems {
         humidity: number;
         pressure: number;
     }
+    wind: {
+        deg: number,
+        speed: number;
+    }
+    weather: [{
+        description: string,
+        icon: string
+    }]
 }
