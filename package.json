@@ -11,7 +11,7 @@
     "build": "webpack --progress --colors",
     "tslint": "tslint -c tslint.json 'src/**/*.ts'",
     "watch": "webpack --watch",
-    "server": "webpack-dev-server --inline --open"
+    "start": "webpack-dev-server --hot --inline --open"
   },
   "author": "Vasili Raby",
   "license": "ISC",

@@ -7,6 +7,10 @@ span {
     align-self: center;
 }
 
+span::first-letter {
+    text-transform: uppercase;
+}
+
 img {
     margin-right: 0.25rem;
 }

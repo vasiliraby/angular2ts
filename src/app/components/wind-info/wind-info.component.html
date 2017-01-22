@@ -1,2 +1,2 @@
-<div>Wind speed:<br>{{windData.speed}} m/sec</div>
-<div rotate [rotateDeg]="windData.deg" class="wind-direction"></div>
+<div>Wind speed:<br>{{speed}} m/sec</div>
+<div #windArrow title="{{tooltip}}" rotate [rotateDeg]="deg + 180" class="wind-direction"></div>

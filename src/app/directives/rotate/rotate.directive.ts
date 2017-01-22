@@ -2,7 +2,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({ selector: '[rotate]' })
 
-export class Rotate implements OnInit {
+export class RotateDirective implements OnInit {
     @Input() rotateDeg: number;
     element: ElementRef;
 

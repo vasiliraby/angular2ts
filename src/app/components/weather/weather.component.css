@@ -22,7 +22,11 @@
     box-shadow: 0 0 8px 2px royalblue;
 }
 
-.favorite:after {
+.favorite {
+    order: -1;
+}
+
+.weather-item:after {
     content: '';
     display: block;
     position: absolute;
@@ -32,4 +36,18 @@
     right: 0;
     background-image: url(src/img/star.svg);
     background-size: contain;
+    opacity: 0;
+}
+
+.weather-item:hover:after {
+    opacity: 0.5;
+}
+
+.favorite.weather-item:after {
+    opacity: 1;
+}
+
+.favorite /deep/ .weather-item__name {
+    text-shadow: 0 0 10px #fff;
+    font-weight: bold;
 }
