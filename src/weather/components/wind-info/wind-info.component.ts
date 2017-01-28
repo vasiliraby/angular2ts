@@ -3,8 +3,8 @@ import { Observable }                                                           
 
 @Component({
     selector: 'wind-info',
-    templateUrl: 'src/app/components/wind-info/wind-info.component.html',
-    styleUrls: ['src/app/components/wind-info/wind-info.component.css'],
+    templateUrl: 'src/weather/components/wind-info/wind-info.component.html',
+    styleUrls: ['src/weather/components/wind-info/wind-info.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -20,7 +20,6 @@ export class WindInfoComponent implements OnInit {
     private getWindDirection(direction: number): void {
         let val: number = Math.floor((direction / 22.5) + 0.5);
         let windDirections: Array<string> = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-        console.log(windDirections[val % 16])
         this.tooltip = windDirections[val % 16];
         this.cd.markForCheck();
     };

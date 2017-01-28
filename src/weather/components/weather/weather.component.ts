@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef }    from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import { IWeatherItems }        from './weather-items.interface';
-import { RoundToPrecisionPipe } from '../../pipes/round-to-precision.pipe';
-import   HttpService            from '../../services/http.service';
+import { RoundToPrecisionPipe } from './../../../app/pipes/round-to-precision.pipe';
+import   HttpService            from './../../../app/services/http.service';
 
 @Component({
     selector: 'weather-component',
-    templateUrl: 'src/app/components/weather/weather.component.html',
-    styleUrls: ['src/app/components/weather/weather.component.css'],
+    templateUrl: 'src/weather/components/weather/weather.component.html',
+    styleUrls: ['src/weather/components/weather/weather.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -24,7 +24,7 @@ export class WeatherComponent implements OnInit {
         // Set weather update every 5 min
         setInterval(() => {
             this.getWeatherData(this.lat, this.lng);
-        }, 60000);
+        }, 300000);
     }
 
     ngOnInit(): void {

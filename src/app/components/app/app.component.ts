@@ -9,6 +9,11 @@ import LocationService from '../../services/location.service';
 })
 
 export class AppComponent {
+    lat: number;
+    lng: number;
+    loaded: boolean = false;
+    errorMsg: string;
+
     constructor() {
         let locationService: LocationService = new LocationService();
 
@@ -19,9 +24,4 @@ export class AppComponent {
         },
         (reason: PositionError) => this.errorMsg = reason.message);
     }
-
-    loaded: boolean = false;
-    errorMsg: string;
-    lat: number;
-    lng: number;
 }
