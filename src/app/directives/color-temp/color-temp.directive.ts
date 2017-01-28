@@ -2,7 +2,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({ selector: '[color-temp]' })
 
-export class ColorTemp implements OnInit {
+export class ColorTemperatureDirective implements OnInit {
     @Input() itemTemp: number;
     element: ElementRef;
 

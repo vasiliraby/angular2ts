@@ -5,10 +5,16 @@
         <weather-item
             #favItem
             *ngFor="let itemData of weatherItems"
-            [itemData]="itemData"
             (click)="toggleFavorite(favItem)"
             [ngClass]="{favorite: favoriteItem === favItem}"
-            [itemTemp]="itemData.main.temp | kelvinToCelcius"
+            [name]="itemData.name"
+            [temp]="itemData.main.temp"
+            [humidity]="itemData.main.humidity"
+            [pressure]="itemData.main.pressure"
+            [deg]="itemData.wind.deg"
+            [speed]="itemData.wind.speed"
+            [icon]="itemData.weather[0].icon"
+            [description]="itemData.weather[0].description"
             color-temp
             class="weather-item">
         </weather-item>

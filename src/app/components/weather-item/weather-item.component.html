@@ -1,6 +1,6 @@
-<span class="weather-item__name">{{itemData.name}}</span>
-<overall-conditions [overallData]="itemData.weather[0]"></overall-conditions>
-<span class="weather-item__temp">Temp: {{itemData.main.temp | kelvinToCelcius}} &#8451;</span>
-<span class="weather-item__humidity">Humidity: {{itemData.main.humidity}} %</span>
-<span class="weather-item__pressure">Pressure: {{itemData.main.pressure}} hpa</span>
-<wind-info [windData]="itemData.wind"></wind-info>
+<span class="weather-item__name">{{name}}</span>
+<overall-conditions [description]="description" [icon]="icon"></overall-conditions>
+<span class="weather-item__temp">Temp: {{temp | kelvinToCelcius}} &#8451;</span>
+<span class="weather-item__humidity">Humidity: {{humidity}} %</span>
+<span class="weather-item__pressure">Pressure: {{pressure}} hpa</span>
+<wind-info [deg]="deg" [speed]="speed"></wind-info>
