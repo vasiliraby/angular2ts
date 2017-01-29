@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } 
 
 import { IWeatherItems }        from './weather-items.interface';
 import { RoundToPrecisionPipe } from './../../../app/pipes/round-to-precision.pipe';
-import   HttpService            from './../../../app/services/http.service';
+import { HttpService }          from './../../../app/services/http.service';
 
 @Component({
     selector: 'weather-component',

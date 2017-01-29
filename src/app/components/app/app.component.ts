@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component }       from '@angular/core';
 
-import LocationService from '../../services/location.service';
+import { LocationService } from '../../services/location.service';
 
 @Component({
     selector: 'my-app',
@@ -14,9 +14,7 @@ export class AppComponent {
     loaded: boolean = false;
     errorMsg: string;
 
-    constructor() {
-        let locationService: LocationService = new LocationService();
-
+    constructor(private locationService: LocationService) {
         locationService.getLocation().then((pos: Position) => {
             this.lng = pos.coords.longitude;
             this.lat = pos.coords.latitude;

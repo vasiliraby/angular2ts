@@ -12,12 +12,16 @@ import { WeatherModule }   from './../weather/weather.module';
 import { AppComponent }    from './components/app/app.component';
 import { AppHeader }       from './components/header/header.component';
 import { AppFooter }       from './components/footer/footer.component';
+import { LocationService } from './services/location.service';
 
 @NgModule({
     imports: [
         BrowserModule,
         MapModule,
         WeatherModule
+    ],
+    providers: [
+        LocationService
     ],
     declarations: [
         AppComponent,
