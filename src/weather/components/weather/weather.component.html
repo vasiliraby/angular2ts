@@ -1,6 +1,9 @@
 <preloader *ngIf="!weatherIsLoaded && !errorMsg" message="Fetching Weather Data. Please wait..."></preloader>
 <div *ngIf="weatherIsLoaded">
-    <weather-refresh-date [actualWeatherDate]="actualWeatherDate"></weather-refresh-date>
+    <div class="weather-header">
+        <weather-refresh-date [actualWeatherDate]="actualWeatherDate"></weather-refresh-date>
+        <weather-control-form></weather-control-form>
+    </div>
     <div class="weather__items">
         <weather-item
             #favItem

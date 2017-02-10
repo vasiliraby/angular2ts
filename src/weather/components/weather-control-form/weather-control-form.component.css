@@ -1,0 +1,12 @@
+.temp-settings {
+    margin-right: 0.25rem;
+}
+.temp-grade {
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.temp-input {
+    position: relative;
+    top: -1px;
+}
