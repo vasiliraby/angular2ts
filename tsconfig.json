@@ -9,7 +9,7 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": false,
-    "types": ["node", "core-js", "whatwg-fetch", "googlemaps"],
+    "types": ["node", "core-js", "googlemaps"],
     "typeRoots": ["node_modules/@types"]
   }
 }
