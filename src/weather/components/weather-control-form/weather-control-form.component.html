@@ -1,0 +1,17 @@
+<form method="POST" #weatherControlForm="ngForm" (ngSubmit)="changeWeatherSettings(weatherControlForm)">
+    <fieldset>
+        <legend>Temperature Units</legend>
+        <label class="temp-settings" *ngFor="let grade of tempGrades">
+            <span class="temp-grade">{{grade}}</span>
+            <input class="temp-input" type="radio" name="temp" value="{{grade}}" ngModel="celcius">
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend>Quantity</legend>
+        <label>
+            <span>Show most relevant</span>
+            <input type="checkbox" name="isRelevant" ngModel>
+        </label>
+    </fieldset>
+    <button type="submit">Apply</button>
+</form>

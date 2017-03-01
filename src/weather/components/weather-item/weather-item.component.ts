@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'weather-item',
-    templateUrl: 'src/app/components/weather-item/weather-item.component.html',
-    styleUrls: ['src/app/components/weather-item/weather-item.component.css'],
+    templateUrl: 'src/weather/components/weather-item/weather-item.component.html',
+    styleUrls: ['src/weather/components/weather-item/weather-item.component.css'],
 })
 
 export class WeatherItemComponent {
