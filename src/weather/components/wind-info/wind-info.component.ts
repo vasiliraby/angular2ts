@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Observable }                                                                                  from 'rxjs/Rx';
+import { Observable, BehaviorSubject }                                                                 from 'rxjs/Rx';
 
 @Component({
     selector: 'wind-info',
@@ -17,11 +17,12 @@ export class WindInfoComponent implements OnInit {
 
     constructor(private cd: ChangeDetectorRef) {};
 
-    private getWindDirection(direction: number): void {
+    private getWindDirection(direction: number): string {
         let val: number = Math.floor((direction / 22.5) + 0.5);
         let windDirections: Array<string> = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
         this.tooltip = windDirections[val % 16];
         this.cd.markForCheck();
+        return this.tooltip;
     };
 
     ngOnInit(): void {
@@ -29,9 +30,24 @@ export class WindInfoComponent implements OnInit {
     };
 
     showWindDirection(): void {
+        let subject = new BehaviorSubject("Unknown direction");
+
+        let subscription = subject.subscribe(
+            function (x) {
+                console.log('Next: ' + x.toString());
+            },
+            function (err) {
+                console.log('Error: ' + err);
+            },
+            function () {
+                console.log('Completed');
+            });
+
         Observable.fromEvent(this.windArrow.nativeElement, 'mouseenter')
         .subscribe(() => {
-            this.getWindDirection(this.deg);
+            let direction: string = this.getWindDirection(this.deg);
+            subject.next(direction);
+            subject.complete();
         });
     };
 }
