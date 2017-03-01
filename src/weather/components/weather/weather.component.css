@@ -1,8 +1,17 @@
+.weather-header {
+    display: flex;
+}
 .weather__items {
     display: flex;
     flex-wrap: wrap;
     height: 400px;
     overflow-y: auto;
+    transition: height 0.5s;
+}
+
+.weather__items.relevant-only {
+    height: 200px;
+    overflow: hidden;
 }
 
 .weather-item {
