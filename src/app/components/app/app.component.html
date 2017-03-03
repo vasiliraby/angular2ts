@@ -1,5 +1,6 @@
 <header app-header></header> 
 <main>
+    <router-outlet></router-outlet>
     <div *ngIf="loaded">
         <weather-component *ngIf="loaded" [lat]="lat" [lng]="lng"></weather-component>
         <map-component *ngIf="loaded" [lat]="lat" [lng]="lng"></map-component>
