@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.wind-direction {
+    width: 24px;
+    height: 32px;
+    margin-right: 1.25rem;
+    background-image: url(/src/img/wind-arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}

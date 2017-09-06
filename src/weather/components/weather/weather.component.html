@@ -1,0 +1,26 @@
+<preloader *ngIf="!weatherIsLoaded && !errorMsg" message="Fetching Weather Data. Please wait..."></preloader>
+<div *ngIf="weatherIsLoaded">
+    <div class="weather-header">
+        <weather-refresh-date [actualWeatherDate]="actualWeatherDate"></weather-refresh-date>
+        <weather-control-form></weather-control-form>
+    </div>
+    <div class="weather__items">
+        <weather-item
+            #favItem
+            *ngFor="let itemData of weatherItems"
+            (click)="toggleFavorite(favItem)"
+            [ngClass]="{favorite: favoriteItem === favItem}"
+            [name]="itemData.name"
+            [temp]="itemData.main.temp"
+            [humidity]="itemData.main.humidity"
+            [pressure]="itemData.main.pressure"
+            [deg]="itemData.wind.deg"
+            [speed]="itemData.wind.speed"
+            [icon]="itemData.weather[0].icon"
+            [description]="itemData.weather[0].description"
+            color-temp
+            class="weather-item">
+        </weather-item>
+    </div>
+</div>
+<div *ngIf="errorMsg && !weatherIsLoaded" class="error">{{errorMsg}}</div>

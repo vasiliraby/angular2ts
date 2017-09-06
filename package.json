@@ -2,28 +2,53 @@
   "name": "angular2ts",
   "version": "1.0.0",
   "description": "Angular 2 weather project on typescript",
-  "main": "src/ts/app.js",
+  "main": "src/main.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/vasiliraby/angular2ts.git"
   },
   "scripts": {
     "build": "webpack --progress --colors",
-    "tslint": "tslint -c tslint.json 'src/ts/app.ts'"
+    "tslint": "tslint -c tslint.json 'src/**/*.ts'",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --hot --inline --open"
   },
   "author": "Vasili Raby",
   "license": "ISC",
+  "dependencies": {
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0",
+    "@angular/forms": "~2.2.0",
+    "@angular/http": "~2.2.0",
+    "@angular/platform-browser": "~2.2.0",
+    "@angular/platform-browser-dynamic": "~2.2.0",
+    "@angular/router": "~3.2.0",
+    "angular-in-memory-web-api": "~0.1.15",
+    "angular2-google-maps": "^0.16.0",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "^0.6.26"
+  },
   "devDependencies": {
     "@types/core-js": "^0.9.34",
     "@types/googlemaps": "^3.25.36",
-    "@types/whatwg-fetch": "0.0.32",
+    "@types/node": "^6.0.46",
+    "canonical-path": "0.0.2",
+    "concurrently": "^3.1.0",
     "css-loader": "^0.26.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "lodash": "^4.16.4",
     "normalize-css": "^2.3.1",
+    "protractor": "4.0.9",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "ts-loader": "^1.2.2",
     "tslint": "^4.0.2",
     "tslint-loader": "^3.2.0",
-    "typescript": "^2.0.10",
-    "webpack": "^1.13.3"
+    "typescript": "^2.2.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }

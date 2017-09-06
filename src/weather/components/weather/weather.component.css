@@ -1,0 +1,62 @@
+.weather-header {
+    display: flex;
+}
+.weather__items {
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+    overflow-y: auto;
+    transition: height 0.5s;
+}
+
+.weather__items.relevant-only {
+    height: 200px;
+    overflow: hidden;
+}
+
+.weather-item {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 180px;
+    height: 180px;
+    margin: 0.5rem;
+    padding: 0.25rem;
+    transition: 0.15s box-shadow;
+}
+
+.weather-item:hover {
+    cursor: pointer;
+    box-shadow: 0 0 8px 2px royalblue;
+}
+
+.favorite {
+    order: -1;
+}
+
+.weather-item:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 0;
+    right: 0;
+    background-image: url(src/img/star.svg);
+    background-size: contain;
+    opacity: 0;
+}
+
+.weather-item:hover:after {
+    opacity: 0.5;
+}
+
+.favorite.weather-item:after {
+    opacity: 1;
+}
+
+.favorite /deep/ .weather-item__name {
+    text-shadow: 0 0 10px #fff;
+    font-weight: bold;
+}

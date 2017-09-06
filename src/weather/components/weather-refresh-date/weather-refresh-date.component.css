@@ -1,0 +1,8 @@
+.weather-refresh {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+.last-refreshed {
+    color: #05abe0;
+}
